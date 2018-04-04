@@ -11,7 +11,13 @@
 	<script type="text/javascript" src="./js/jquery-2.1.1.min.js"></script>
 	<script src="https://rawgit.com/ethereumjs/browser-builds/2fb69a714afe092b06645286f14b94f41e5c062c/dist/ethereumjs-tx.js"></script>
 	<script src="https://cdn.rawgit.com/ethereumjs/browser-builds/2fb69a714afe092b06645286f14b94f41e5c062c/dist/ethereumjs-tx.js"></script>
-
+	<!--Stylesheets-->
+	<link href="./css/jquery.modal.css" type="text/css" rel="stylesheet" />
+	<link href="./css/jquery.modal.theme-xenon.css" type="text/css" rel="stylesheet" />
+	<link href="./css/jquery.modal.theme-atlant.css" type="text/css" rel="stylesheet" />
+	<!--jQuery-->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript" src=".js/jquery.modal.js"></script>
 	<script type="text/javascript">
     // Address 0x6F213A598Be7058a4248eaf0a2593210Fa8B71c3 
     // pri key d816e5e0eab23dc5573968edaed1443787b03a5dddf4b82e48818ad3634a894a
@@ -63,17 +69,8 @@
     }
 
     function join(){ 
-        
-         $.ajax({
-            type : 'GET', // GET방식으로 요청
-            url : 'https://api-ropsten.etherscan.io/api?module=account&action=balance&address=0xCB3f76FAb25c223653a85513D2ca42BAB68D1B21&tag=latest&apikey=YourApiKeyToken',
-            success : function(data) { // 성공적으로 수행 시 response를 data라는 인자로 받는다.
-	                alert(data.result);
-            },
-			error : function(data) {
-				alert(12312);
-			}
-        });
+    		alert(1231);
+
     }
     
 
@@ -84,8 +81,8 @@
 <script language="JavaScript">
 	function setMessage(arg) {
 		alert(arg);
- 		sendMessage("sent");
- 		document.getElementById("kpcTokenBalance").innerHTML = "test";
+		sendMessage("sent");
+		document.getElementById("kpcTokenBalance").innerHTML = "test";
 
 	} 
 
@@ -136,7 +133,7 @@
 		</ul>
 
 	</footer>
-	<div id = "buttonWrapper" onclick="join();">
+	<div id = "buttonWrapper" onclick="join(); ok.performClick('click');">
 
 	</div>
 </div>
@@ -151,6 +148,8 @@
 		window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
 		document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
 	}
+
+
 </script>
 <script type="text/javascript">
 
