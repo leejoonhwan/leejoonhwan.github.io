@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="./js/web3.min.js"></script>
 	<script type="text/javascript" src="./js/utf8.js"></script>
 	<script type="text/javascript" src="./js/testabi.js"></script>
+	<script type="text/javascript" src="./js/jquery-2.1.1.min.js"></script>
 	<script src="https://rawgit.com/ethereumjs/browser-builds/2fb69a714afe092b06645286f14b94f41e5c062c/dist/ethereumjs-tx.js"></script>
 	<script src="https://cdn.rawgit.com/ethereumjs/browser-builds/2fb69a714afe092b06645286f14b94f41e5c062c/dist/ethereumjs-tx.js"></script>
 
@@ -23,6 +24,7 @@
 
     var Web3 = require('web3');
     var web3 = new Web3();
+    var DIV_INT = 100000000;
     web3.setProvider(new web3.providers.HttpProvider('https://ropsten.infura.io/TvuMDSQ9QbgjPihMgjvZ'));
 
     function settingBalance() {
@@ -35,10 +37,33 @@
         tokenContract = web3.eth.contract(contractABI).at(contractAddress)
 
 
-     	var kpcTokenBalance = parseFloat(tokenContract.balanceOf(address).toNumber())/100000000;
-     	
+     	var kpcTokenBalance = parseFloat(tokenContract.balanceOf(address).toNumber())/DIV_INT;
+     	var ethBalance = getEthBalance(address);
         console.log(kpcTokenBalance);
-		document.getElementById("kpcTokenBalance").innerHTML = kpcTokenBalance+" KPC";
+        console.log(ethBalance);
+		document.getElementById("kpcTokenBalance").innerHTML = (Math.floor(kpcTokenBalance * DIV_INT)/DIV_INT)+" KPC";
+
+		
+    }
+
+    function getEthBalance(address){ 
+        
+         $.ajax({
+            type : 'GET', // GET방식으로 요청
+            url : 'https://api-ropsten.etherscan.io/api?module=account&action=balance&address=0xCB3f76FAb25c223653a85513D2ca42BAB68D1B21&tag=latest&apikey=YourApiKeyToken',
+            success : function(data) { // 성공적으로 수행 시 response를 data라는 인자로 받는다.
+	
+					var ethBalance = parseFloat(data.result / 1000000000000000000);
+	
+					document.getElementById("ethTokenBalance").innerHTML = (Math.floor(ethBalance * DIV_INT)/DIV_INT)+" ETH";
+            },
+			error : function(data) {
+				alert(12312);
+			}
+
+        });
+
+
     }
 </script>
 
