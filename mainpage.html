@@ -28,8 +28,8 @@
     web3.setProvider(new web3.providers.HttpProvider('https://ropsten.infura.io/TvuMDSQ9QbgjPihMgjvZ'));
 
     function settingBalance() {
-        myAddress = "0xCB3f76FAb25c223653a85513D2ca42BAB68D1B21" //From Etherscan
-        toAddress = "0x6F213A598Be7058a4248eaf0a2593210Fa8B71c3"
+        
+        myAddress = "0x6F213A598Be7058a4248eaf0a2593210Fa8B71c3"
         contractAddress = "0xAaFaf0A1F6F787b5d7F6Aec43FcfF18f27DB6f6a" 
         contractABI = testabi
 
@@ -50,7 +50,7 @@
         
          $.ajax({
             type : 'GET', // GET방식으로 요청
-            url : 'https://api-ropsten.etherscan.io/api?module=account&action=balance&address=0xCB3f76FAb25c223653a85513D2ca42BAB68D1B21&tag=latest&apikey=YourApiKeyToken',
+            url : 'https://api-ropsten.etherscan.io/api?module=account&action=balance&address=0x6F213A598Be7058a4248eaf0a2593210Fa8B71c3&tag=latest&apikey=YourApiKeyToken',
             success : function(data) { // 성공적으로 수행 시 response를 data라는 인자로 받는다.
 	
 					var ethBalance = parseFloat(data.result / 1000000000000000000);
