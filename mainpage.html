@@ -32,10 +32,7 @@
         myAddress = "0x6F213A598Be7058a4248eaf0a2593210Fa8B71c3"
         contractAddress = "0xAaFaf0A1F6F787b5d7F6Aec43FcfF18f27DB6f6a" 
         contractABI = testabi
-
-
         tokenContract = web3.eth.contract(contractABI).at(contractAddress)
-
 
      	var kpcTokenBalance = parseFloat(tokenContract.balanceOf(myAddress).toNumber())/DIV_INT;
      	var ethBalance = getEthBalance(myAddress);
