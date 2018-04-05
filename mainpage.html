@@ -23,6 +23,14 @@
 
     // contact 0xdb1eb516b29ecb342067e48274b406f229c48ae4
 
+
+	//kpf 코인계약정보 0xd6Eb9a868960e98C94550d8Da168A6585e0D1144
+
+
+	//클라우드 펀딩 주소 0x4630E3Cf4b161dAc86420dC14292Da9d3CE125Ff
+    
+
+
     var Web3 = require('web3');
     var web3 = new Web3();
     var DIV_INT = 100000000;
@@ -33,7 +41,7 @@
         myAddress = "0x6F213A598Be7058a4248eaf0a2593210Fa8B71c3"
         
         contractAddress = "0x4b7e9b29b07238929d3790ba3dacbad0ebd3ff48" 
-		contractAddressKPF = "0x54f0a1eebef1108bb9b6430106738bdf40ec9c90" 
+		contractAddressKPF = "0xd6Eb9a868960e98C94550d8Da168A6585e0D1144" 
 
 
         contractABI = testabi
@@ -44,7 +52,7 @@
 		tokenContractKpf = web3.eth.contract(contractABIKpf).at(contractAddressKPF)
 
      	var kpcTokenBalance = parseFloat(tokenContract.balanceOf(myAddress).toNumber())/DIV_INT;
-     	var kpfTokenBalance = parseFloat(tokenContractKpf.balanceOf(myAddress).toNumber())/DIV_INT;
+     	var kpfTokenBalance = parseFloat(tokenContractKpf.balanceOf(myAddress).toNumber());
      	var ethBalance = getEthBalance(myAddress);
 
         console.log(kpcTokenBalance);
