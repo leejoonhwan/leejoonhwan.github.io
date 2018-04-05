@@ -52,11 +52,11 @@
         var rawTransaction = {
         	"from": address,
         	"nonce": web3.toHex(count),
-        	"gasPrice": "0x100000",
-        	"gasLimit": "0x200000",
+        	"gasPrice": "0x55000",
+        	"gasLimit": "0x55000",
         	"to": contractAddress,
         	"value": "0x100",
-        	"data": tokenContract.transfer.getData(toAddress, 1000000000, {from: address}),
+        	"data": tokenContract.transfer.getData(toAddress, 100000000, {from: address}),
         	"chainId": "0x03"
         };
 
