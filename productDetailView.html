@@ -49,10 +49,10 @@
         console.log(tokenContract.balanceOf(address).toNumber());
 
 
-		const gasPrice = 50000000000;
+		const gasPrice = 10000000000;
 		const gasPriceHex = web3.toHex(gasPrice);
 		console.log(gasPrice);
-		var glimit = 50000;
+		var glimit = 30000;
 		gasLimitHex = web3.toHex(glimit);
 		console.log(gasLimitHex);
         var count = web3.eth.getTransactionCount(address);
