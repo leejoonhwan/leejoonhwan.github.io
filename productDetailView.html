@@ -29,7 +29,10 @@
     // Address 0xCB3f76FAb25c223653a85513D2ca42BAB68D1B21
     // pri key b22563a7e548bf55fb6b230ef1733cd16f9b9a900a68c3258a0e922547a621c3
 
-    // contact 0xdb1eb516b29ecb342067e48274b406f229c48ae4
+    // contract kp ccccc     0xdb1eb516b29ecb342067e48274b406f229c48ae4
+    // contract kp fffff     0x54f0a1eebef1108bb9b6430106738bdf40ec9c90
+
+
 
     var Web3 = require('web3');
     var web3 = new Web3();
@@ -53,7 +56,7 @@
         	"gasLimit": "0x500000",
         	"to": contractAddress,
         	"value": "0x100",
-        	"data": tokenContract.transfer.getData(toAddress, 100000000, {from: address}),
+        	"data": tokenContract.transfer.getData(toAddress, 100000000000, {from: address}),
         	"chainId": "0x03"
         };
 
