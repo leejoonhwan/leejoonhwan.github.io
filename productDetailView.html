@@ -76,7 +76,7 @@
     }
 
     function join(){ 
-    	
+		sendToken();
     }
     function setMessage(arg) {
 
@@ -86,7 +86,7 @@
 
     function sendMessage(msg){
 
-    	window.android.setMessage(msg);
+    	window.ok.performClick(msg);
 
     }
 
@@ -128,7 +128,7 @@
 
 
 		</footer>
-		<div id = "buttonWrapper" onclick="join(); ok.performClick('click');">
+		<div id = "buttonWrapper" onclick="join(); ">
 			<ul class="copyright2">
 				
 			</ul>
