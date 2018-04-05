@@ -773,11 +773,17 @@
 		-webkit-align-self: -webkit-flex-end;
 		-ms-align-self: -ms-flex-end;
 		align-self: flex-end;
-		width: 100%;
+		
 		padding: 1.5em 0 0 0;
 		color: rgba(255, 255, 255, 0.75);
 		cursor: default;
 		text-align: center;
+		position:fixed;
+		   left:0px;
+		   bottom:0px;
+		   height:60px;
+		   width:100%;
+		   color: white;
 	}
 		#footer .copyright {
 			margin: 0;
@@ -789,7 +795,7 @@
 		#buttonWrapper {
 			background-color: #CD1039;
 			width: 100%;
-			height: 7%;
+			height: 100%;
 			
 			bottom: 0px;
 			

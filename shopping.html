@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<!-- web3 관련 스크립트-->
+<script type="text/javascript" src="./js/bignumber.min.js"></script>
+<script type="text/javascript" src="./dist/web3-light.js"></script>
+<script type="text/javascript" src="./js/web3.min.js"></script>
+<script type="text/javascript" src="./js/utf8.js"></script>
+<script type="text/javascript" src="./js/testabi.js"></script>
+<script src="https://rawgit.com/ethereumjs/browser-builds/2fb69a714afe092b06645286f14b94f41e5c062c/dist/ethereumjs-tx.js"></script>
+<script src="https://cdn.rawgit.com/ethereumjs/browser-builds/2fb69a714afe092b06645286f14b94f41e5c062c/dist/ethereumjs-tx.js"></script>
+
+
+<script type="text/javascript">
+    // Address 0x6F213A598Be7058a4248eaf0a2593210Fa8B71c3 
+    // pri key d816e5e0eab23dc5573968edaed1443787b03a5dddf4b82e48818ad3634a894a
+
+    // Address 0xCB3f76FAb25c223653a85513D2ca42BAB68D1B21
+    // pri key b22563a7e548bf55fb6b230ef1733cd16f9b9a900a68c3258a0e922547a621c3
+
+    // contact 0xdb1eb516b29ecb342067e48274b406f229c48ae4
+
+    var Web3 = require('web3');
+    var web3 = new Web3();
+    web3.setProvider(new web3.providers.HttpProvider('https://ropsten.infura.io/TvuMDSQ9QbgjPihMgjvZ'));
+
+    function settingBalance() {
+        address = "0xCB3f76FAb25c223653a85513D2ca42BAB68D1B21" //From Etherscan
+        toAddress = "0x6F213A598Be7058a4248eaf0a2593210Fa8B71c3"
+        contractAddress = "0xAaFaf0A1F6F787b5d7F6Aec43FcfF18f27DB6f6a" 
+        contractABI = testabi
+
+
+        tokenContract = web3.eth.contract(contractABI).at(contractAddress)
+
+
+        var kpcTokenBalance = parseFloat(tokenContract.balanceOf(address).toNumber())/100000000;
+
+        console.log(kpcTokenBalance);
+
+    }
+    
+</script>
+
+
+
+
+<head>
+	<title>korea post mainpage</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-loading">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Main -->
+		<section id="main">
+			<header>
+				<ul class="icons">
+					<span><img src="images/product1.png" style="max-width: 100%; height: auto;" /></span>
+				</ul>
+				<ul class="icons">
+					<span><img src="images/product1-1.png" style="max-width: 100%; height: auto;" /></span>
+				</ul>
+
+			</header>
+			<footer>
+				<ul class="icons">
+
+				</ul>
+			</ul>
+		</footer>
+	</section>
+
+	<!-- Footer -->
+	<footer id="footer">
+		<ul class="copyright">
+
+		</div>
+		</ul>
+		<div id = "buttonWrapper" onclick="join();">
+		<ul class="copyright2">
+			펀드 가입
+		</ul>
+		</div>
+	</footer>
+
+
+
+
+
+
+</body>
+<script>
+	if ('addEventListener' in window) {
+		settingBalance();
+		window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+		document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+	}
+</script>
+</html>
