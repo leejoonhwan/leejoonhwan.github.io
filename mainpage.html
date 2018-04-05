@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="./js/web3.min.js"></script>
 	<script type="text/javascript" src="./js/utf8.js"></script>
 	<script type="text/javascript" src="./js/testabi.js"></script>
+	<script type="text/javascript" src="./js/kpfabi.js"></script>
 	<script type="text/javascript" src="./js/jquery-2.1.1.min.js"></script>
 	<script src="https://rawgit.com/ethereumjs/browser-builds/2fb69a714afe092b06645286f14b94f41e5c062c/dist/ethereumjs-tx.js"></script>
 	<script src="https://cdn.rawgit.com/ethereumjs/browser-builds/2fb69a714afe092b06645286f14b94f41e5c062c/dist/ethereumjs-tx.js"></script>
@@ -30,16 +31,27 @@
     function settingBalance() {
         
         myAddress = "0x6F213A598Be7058a4248eaf0a2593210Fa8B71c3"
+        
         contractAddress = "0xAaFaf0A1F6F787b5d7F6Aec43FcfF18f27DB6f6a" 
+		contractAddressKPF = "0x54f0a1eebef1108bb9b6430106738bdf40ec9c90" 
+
+
         contractABI = testabi
+       	contractABIKpf = kpfabi
+
+       	
         tokenContract = web3.eth.contract(contractABI).at(contractAddress)
+		tokenContractKpf = web3.eth.contract(contractABIKpf).at(contractAddressKPF)
 
      	var kpcTokenBalance = parseFloat(tokenContract.balanceOf(myAddress).toNumber())/DIV_INT;
+     	var kpfTokenBalance = parseFloat(tokenContractKpf.balanceOf(myAddress).toNumber())/DIV_INT;
      	var ethBalance = getEthBalance(myAddress);
+
         console.log(kpcTokenBalance);
+        console.log(kpfTokenBalance);
         console.log(ethBalance);
 		document.getElementById("kpcTokenBalance").innerHTML = (Math.floor(kpcTokenBalance * DIV_INT)/DIV_INT)+" KPC";
-
+		document.getElementById("kpfTokenBalance").innerHTML = (Math.floor(kpfTokenBalance * DIV_INT)/DIV_INT)+" KPF";
 		
     }
 
@@ -84,8 +96,11 @@
 						<header>
 							<span class="avatar"><img src="images/myprofilPicture.jpg" alt="" /></span>
 							<h1>My Balance</h1>
-							<p id ="kpcTokenBalance"></p>
+							
 							<p id ="ethTokenBalance"></p>
+							
+							<p id ="kpcTokenBalance"></p>
+							<p id ="kpfTokenBalance"></p>
 						</header>
 						<footer>
 							<ul class="icons">
