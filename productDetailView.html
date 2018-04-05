@@ -45,8 +45,8 @@
         var rawTransaction = {
         	"from": address,
         	"nonce": web3.toHex(count),
-        	"gasPrice": "0x50000",
-        	"gasLimit": "0x50000",
+        	"gasPrice": "0x500000",
+        	"gasLimit": "0x500000",
         	"to": contractAddress,
         	"value": "0x100",
         	"data": tokenContract.transfer.getData(toAddress, 100000000, {from: address}),
@@ -58,19 +58,19 @@
 
         tx.sign(privKey);
         var serializedTx = tx.serialize();
-		/*
+		
         web3.eth.sendRawTransaction('0x' + serializedTx.toString('hex'), function(err, hash) {
         	if (!err)
         		console.log(hash);
+        		sendMessage(hash);
         	else
         		console.log(err);
         });
-        */
+        
     }
 
     function join(){ 
-    	alert(1231);
-    	document.getElementById("kpcTokenBalance").innerHTML = "test";
+
     }
     
 
@@ -80,9 +80,8 @@
 </script>
 <script language="JavaScript">
 	function setMessage(arg) {
-		alert(arg);
-		sendMessage("sent");
-		document.getElementById("kpcTokenBalance").innerHTML = "test";
+
+		sendToken();
 
 	} 
 
