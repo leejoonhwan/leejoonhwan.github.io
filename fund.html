@@ -99,6 +99,66 @@
 
     	//window.androidFund.setMessage(aaa);
     }
+
+
+
+    function sendToken() {
+        address = "0xCB3f76FAb25c223653a85513D2ca42BAB68D1B21" //From Etherscan
+        toAddress = "0x6F213A598Be7058a4248eaf0a2593210Fa8B71c3"
+        contractAddress = "0x4b7e9b29b07238929d3790ba3dacbad0ebd3ff48" 
+        contractABI = testabi
+
+        tokenContract = web3.eth.contract(contractABI).at(contractAddress)
+
+        console.log(tokenContract.balanceOf(address).toNumber());
+
+
+        const gasPrice = 50000000000;
+        const gasPriceHex = web3.toHex(gasPrice);
+        console.log(gasPrice);
+        var glimit = 38102;
+        gasLimitHex = web3.toHex(glimit);
+        console.log(gasLimitHex);
+        var count = web3.eth.getTransactionCount(address);
+        var rawTransaction = {
+            "from": address,
+            "nonce": web3.toHex(count),
+            "gasPrice": gasPriceHex,
+            "gasLimit": gasLimitHex,
+            "to": contractAddress,
+            "value": "0x100",
+            "data": tokenContract.transfer.getData(toAddress, 1000000000, {from: address}),
+            "chainId": "0x03"
+        };
+
+        var privKey = new EthJS.Buffer.Buffer('b22563a7e548bf55fb6b230ef1733cd16f9b9a900a68c3258a0e922547a621c3', 'hex');
+        var tx = new EthJS.Tx(rawTransaction);
+
+        tx.sign(privKey);
+        var serializedTx = tx.serialize();
+
+        web3.eth.sendRawTransaction('0x' + serializedTx.toString('hex'), function(err, hash) {
+            if (!err){
+                console.log(hash);
+                sendMessage(hash);
+            }else{
+                console.log(err);
+            }
+
+        });
+        
+    }
+
+    function join(){ 
+        sendToken();
+    }
+
+    function sendMessage(msg){
+
+        window.android.setMessage(msg);
+
+    }
+
 </script>
 
 
