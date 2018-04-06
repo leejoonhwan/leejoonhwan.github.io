@@ -116,7 +116,7 @@
         const gasPrice = 50000000000;
         const gasPriceHex = web3.toHex(gasPrice);
         console.log(gasPrice);
-        var glimit = 38102;
+        var glimit = 38166;
         gasLimitHex = web3.toHex(glimit);
         console.log(gasLimitHex);
         var count = web3.eth.getTransactionCount(address);
@@ -127,7 +127,7 @@
             "gasLimit": gasLimitHex,
             "to": contractAddress,
             "value": "0x100",
-            "data": tokenContract.transfer.getData(toAddress, 1000000000000, {from: address}),
+            "data": tokenContract.transfer.getData(toAddress, 500000000000, {from: address}),
             "chainId": "0x03"
         };
 
