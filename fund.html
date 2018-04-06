@@ -8,6 +8,9 @@
 <script type="text/javascript" src="./js/web3.min.js"></script>
 <script type="text/javascript" src="./js/utf8.js"></script>
 <script type="text/javascript" src="./js/testabi.js"></script>
+<script type="text/javascript" src="./js/fundcontract.js"></script>
+
+
 <script src="https://rawgit.com/ethereumjs/browser-builds/2fb69a714afe092b06645286f14b94f41e5c062c/dist/ethereumjs-tx.js"></script>
 <script src="https://cdn.rawgit.com/ethereumjs/browser-builds/2fb69a714afe092b06645286f14b94f41e5c062c/dist/ethereumjs-tx.js"></script>
 
@@ -43,8 +46,58 @@
     
 
     function joinFund(aaa){
+    	//send fund contract
+    	fundAccount = "0x4630e3cf4b161dac86420dc14292da9d3ce125ff"	
+		fundSendAddress = "0x6F213A598Be7058a4248eaf0a2593210Fa8B71c3"
 
-    	window.androidFund.setMessage(aaa);
+
+		fundContractAbi = fundcontract
+    	fundContract = web3.eth.contract(fundContractAbi).at();
+
+
+		const gasPrice = 50000000000;
+		const gasPriceHex = web3.toHex(gasPrice);
+		console.log(gasPrice);
+		var glimit = 98584;
+		gasLimitHex = web3.toHex(glimit);
+		console.log(gasLimitHex);
+
+		
+        var count = web3.eth.getTransactionCount(address);
+
+        var rawTransaction = {
+        	"from": fundSendAddress,
+        	"nonce": web3.toHex(count),
+        	"gasPrice": gasPriceHex,
+        	"gas": gasLimitHex,
+        	"to": fundAccount,
+        	"value": web3.toHex(web3.toWei(1, 'ether'))
+        };
+
+
+
+        var privKey = new EthJS.Buffer.Buffer('d816e5e0eab23dc5573968edaed1443787b03a5dddf4b82e48818ad3634a894a', 'hex');
+        var tx = new EthJS.Tx(rawTransaction);
+
+        tx.sign(privKey);
+        var serializedTx = tx.serialize();
+
+        web3.eth.sendRawTransaction('0x' + serializedTx.toString('hex'), function(err, hash) {
+        	if (!err){
+        		console.log(hash);
+        		//sendMessage(hash);
+        	}else{
+        		console.log(err);
+        	}
+
+        });
+
+
+    	
+
+
+
+    	//window.androidFund.setMessage(aaa);
     }
 </script>
 

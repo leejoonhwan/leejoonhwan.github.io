@@ -59,7 +59,7 @@
         console.log(kpfTokenBalance);
         console.log(ethBalance);
 		document.getElementById("kpcTokenBalance").innerHTML = (Math.floor(kpcTokenBalance * DIV_INT)/DIV_INT)+" KPC";
-		document.getElementById("kpfTokenBalance").innerHTML = (Math.floor(kpfTokenBalance * DIV_INT)/DIV_INT)+" KPF";
+		//document.getElementById("kpfTokenBalance").innerHTML = (Math.floor(kpfTokenBalance * DIV_INT)/DIV_INT)+" KPF";
 		
     }
 
@@ -72,7 +72,7 @@
 	
 					var ethBalance = parseFloat(data.result / 1000000000000000000);
 	
-					document.getElementById("ethTokenBalance").innerHTML = (Math.floor(ethBalance * DIV_INT)/DIV_INT)+" ETH";
+					//document.getElementById("ethTokenBalance").innerHTML = (Math.floor(ethBalance * DIV_INT)/DIV_INT)+" ETH";
             },
 			error : function(data) {
 				alert(12312);
@@ -105,10 +105,10 @@
 							<span class="avatar"><img src="images/myprofilPicture.jpg" alt="" /></span>
 							<h1>My Balance</h1>
 							
-							<p id ="ethTokenBalance"></p>
-							
 							<p id ="kpcTokenBalance"></p>
-							<p id ="kpfTokenBalance"></p>
+							
+							<!-- <p id ="kpcTokenBalance"></p> -->
+							<!-- <p id ="kpfTokenBalance"></p> -->
 						</header>
 						<footer>
 							<ul class="icons">
