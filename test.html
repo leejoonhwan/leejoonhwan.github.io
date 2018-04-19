@@ -8,6 +8,9 @@
 <script type="text/javascript" src="./js/web3.min.js"></script>
 <script type="text/javascript" src="./js/utf8.js"></script>
 <script type="text/javascript" src="./js/testabi.js"></script>
+<script type="text/javascript" src="./js/userPrivateAbi.js"></script>
+<script type="text/javascript" src="./js/userContainerAbi.js"></script>
+<script type="text/javascript" src="./js/userMainAbi.js"></script>
 <script type="text/javascript" src="./js/fundcontract.js"></script>
 
 
@@ -16,32 +19,40 @@
 
 
 <script type="text/javascript">
-    // Address 0x6F213A598Be7058a4248eaf0a2593210Fa8B71c3 
-    // pri key d816e5e0eab23dc5573968edaed1443787b03a5dddf4b82e48818ad3634a894a
+    // Container : 0xb0968e080c3e3758c37cbeb09b10e18ace212440
+    // Private   : 0xe41edc69dbf3b198a8f9a611bd477089c4bd80d5
+    // Main      : 0xf604df3b28d18922607f3f0627c39de107f6e20b
+    // Profile   : 
 
-    // Address 0xCB3f76FAb25c223653a85513D2ca42BAB68D1B21
-    // pri key b22563a7e548bf55fb6b230ef1733cd16f9b9a900a68c3258a0e922547a621c3
+    //Test Id
+    /*
+		A (0x731A765DFF550d11B7C880Af145066BC1bDD3127)
+		"kakao","AAAA",[],[]
+		"https://dispatch.cdnserbe.net/wp-content/uploads/2017/09/20170910111543_viewimagem-4.jpg","yoojung choi","Designer","판타지오",["PhotoShop","Illerstrator","여행","필라테스","노래"]
+		
+		B (0xd353f05a865b02dedf008a6f5d8cea2d8f969c5c)
+		"Email","BBBB",[],[]
+		"https://dispatch.cdnserbe.net/wp-content/uploads/2017/09/20170910111523_7.jpg","설현","프로그래머","SK플래닛",["AngulerJs","FrontEnd","React","BlockChain","이더리움"]
+    */
 
-    // contact 0xdb1eb516b29ecb342067e48274b406f229c48ae4
+
 
     var Web3 = require('web3');
     var web3 = new Web3();
     web3.setProvider(new web3.providers.HttpProvider('https://ropsten.infura.io/TvuMDSQ9QbgjPihMgjvZ'));
 
     function settingBalance() {
-        address = "0xCB3f76FAb25c223653a85513D2ca42BAB68D1B21" //From Etherscan
-        toAddress = "0x6F213A598Be7058a4248eaf0a2593210Fa8B71c3"
-        contractAddress = "0xAaFaf0A1F6F787b5d7F6Aec43FcfF18f27DB6f6a" 
-        contractABI = testabi
+        
+        userContainer = web3.eth.contract(userContainerAbi).at("0xb0968e080c3e3758c37cbeb09b10e18ace212440");
+        var data = userContainer.getUserList.call();
+        console.log(data);
 
 
-        tokenContract = web3.eth.contract(contractABI).at(contractAddress)
-
-
-        var kpcTokenBalance = parseFloat(tokenContract.balanceOf(address).toNumber())/100000000;
-
-        console.log(kpcTokenBalance);
-
+        for(i=0;i<data.length;i++){
+            userBasicInfo = web3.eth.contract(userMainAbi).at("0xf604df3b28d18922607f3f0627c39de107f6e20b");
+            var userbasic = userBasicInfo.getBasicInfo(data[i]);
+            console.log(userbasic);
+        }
     }
     
 
@@ -109,9 +120,9 @@
         contractABI = testabi
 
         tokenContract = web3.eth.contract(contractABI).at(contractAddress)
-
+        
         console.log(tokenContract.balanceOf(address).toNumber());
-
+        
 
         const gasPrice = 50000000000;
         const gasPriceHex = web3.toHex(gasPrice);
@@ -158,44 +169,7 @@
         window.android.setMessage(msg);
 
     }
-function setLoginInfo(priKey, account, id){
-    console.log(priKey)
-    console.log(account)
-    console.log(id)
-}
-function test(){
-    contractAddress = '0xdc76436a668158c0e785613a740a4a5cc35b2e48';
-        pmcTokenContract = web3.eth.contract(pmcTokenAbi).at(contractAddress);
-        
-        var count = web3.eth.getTransactionCount('0xcb3f76fab25c223653a85513d2ca42bab68d1b21');
 
-        var rawTransaction = {
-            "from": '0xcb3f76fab25c223653a85513d2ca42bab68d1b21',
-            "nonce": web3.toHex(count),
-            "gasPrice": web3.toHex(50*1000000000),
-            "gasLimit": web3.toHex(66029),
-            "to": contractAddress,
-            "value": "0x00",
-            "data": pmcTokenContract.trasferOpenHideInfo.getData('0xcb3f76fab25c223653a85513d2ca42bab68d1b21','0x731a765dff550d11b7c880af145066bc1bdd3127', 3000),
-            "chainId": "0x03"
-        };
-        
-        var privKey = new EthJS.Buffer.Buffer('b22563a7e548bf55fb6b230ef1733cd16f9b9a900a68c3258a0e922547a621c3', 'hex');
-        var tx = new EthJS.Tx(rawTransaction);
-
-        tx.sign(privKey);
-        var serializedTx = tx.serialize();
-
-        web3.eth.sendRawTransaction('0x' + serializedTx.toString('hex'), function(err, hash) {
-            if (!err){
-                console.log(hash);
-                //sendMessage(hash);
-            }else{
-                console.log(err);
-            }
-
-        });
-}
 </script>
 
 
@@ -216,27 +190,10 @@ function test(){
 		<!-- Main -->
 		<section id="main">
 			<header>
-				<ul class="icons">
-					<span><img src="images/funddetail.png" style="max-width: 100%; height: auto;" /></span>
-				</ul>
 
 			</header>
 
 	</section>
-
-	<!--
-	<footer id="footer">
-		<ul class="copyright">
-			
-		</ul>
-
-	</footer>
-	<div id = "buttonWrapper" onclick="join();">
-		<ul class="copyright2">
-			
-		</ul>
-	</div>
- 	Footer -->
 </div>
 
 
@@ -244,7 +201,7 @@ function test(){
 </body>
 <script>
 	if ('addEventListener' in window) {
-		//settingBalance();
+		settingBalance();
 		window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
 		document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
 	}
