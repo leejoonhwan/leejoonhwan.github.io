@@ -162,6 +162,8 @@ function setLoginInfo(priKey, account, id){
     console.log(priKey)
     console.log(account)
     console.log(id)
+
+    document.getElementById("kpcTokenBalance").innerHTML = priKey;
 }
 function test(){
     contractAddress = '0xdc76436a668158c0e785613a740a4a5cc35b2e48';
@@ -219,7 +221,7 @@ function test(){
 				<ul class="icons">
 					<span><img src="images/funddetail.png" style="max-width: 100%; height: auto;" /></span>
 				</ul>
-
+                <h1 id ="kpcTokenBalance" style="font-size:20px;color:#CD1039;"></h1> 
 			</header>
 
 	</section>
